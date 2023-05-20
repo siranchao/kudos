@@ -37,7 +37,7 @@ export default function Header() {
 
                   <div className="ontario-application-subheader__menu-container">
                     <ul className="ontario-application-subheader__menu ontario-show-for-large">
-                      <li><Link href="/home">Home</Link></li>
+                      <li><Link href="/">Home</Link></li>
                       <li><Link href="/giveKudos">Give Kudos</Link></li>
                       <li><Link href="/myKudos">My Kudos</Link></li>
                       <li><Link href="/about">About</Link></li>
