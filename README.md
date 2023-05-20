@@ -1,3 +1,25 @@
+```
+██████╗ ██████╗ ██████╗ ██╗   ██╗    ██╗  ██╗██╗   ██╗██████╗  ██████╗ ███████╗
+██╔══██╗██╔══██╗██╔══██╗██║   ██║    ██║ ██╔╝██║   ██║██╔══██╗██╔═══██╗██╔════╝
+██████╔╝██████╔╝██║  ██║██║   ██║    █████╔╝ ██║   ██║██║  ██║██║   ██║███████╗
+██╔══██╗██╔═══╝ ██║  ██║██║   ██║    ██╔═██╗ ██║   ██║██║  ██║██║   ██║╚════██║
+██║  ██║██║     ██████╔╝╚██████╔╝    ██║  ██╗╚██████╔╝██████╔╝╚██████╔╝███████║
+╚═╝  ╚═╝╚═╝     ╚═════╝  ╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝
+```
+
+[![Mongo DB](https://img.shields.io/badge/MongoDB-%2347A248.svg?&style=for-the-badge&logo=MongoDB&logoColor=white)]()
+[![Express](https://img.shields.io/badge/Express-%23000000.svg?&style=for-the-badge&logo=Express&logoColor=white)]()
+[![React](https://img.shields.io/badge/React-%2361DAFB.svg?&style=for-the-badge&logo=React&logoColor=white)]()
+[![Node.js](https://img.shields.io/badge/Node.js-%23339933.svg?&style=for-the-badge&logo=Node.js&logoColor=white)]()
+[![Next.js](https://img.shields.io/badge/next.js-%23663399.svg?&style=for-the-badge&logo=Next.js&logoColor=white)]()
+
+# rpdu.rd.kudos
+
+The original app url can be found at:
+[https://ashy-bay-0ac315a10.2.azurestaticapps.net/](https://ashy-bay-0ac315a10.2.azurestaticapps.net/)
+
+A simple mobile first (web) app to give kudos to any and everyone! Built on a MERN stack with Next.js.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
