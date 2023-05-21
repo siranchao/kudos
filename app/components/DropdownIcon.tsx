@@ -82,6 +82,17 @@ export default function DropdownIcon() {
               <Link href='/' style={listItemStyle}>
                 <ListItem>
                     <ListItemButton>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="All Kudos" />
+                    </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link href='/' style={listItemStyle}>
+                <ListItem>
+                    <ListItemButton>
                     <ListItemIcon>
                         <OutboxIcon />
                     </ListItemIcon>
