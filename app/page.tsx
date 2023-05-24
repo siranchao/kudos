@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       <Banner/>
 
-      <div className={styles.homepageContent}>
+      <div className={styles.indexpageContent}>
         <div className="ontario-callout" style={{maxWidth: '90vw'}}>
             {isAuthenticated?
               <div>
