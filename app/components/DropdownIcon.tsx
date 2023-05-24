@@ -15,6 +15,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 import HomeIcon from '@mui/icons-material/Home';
+import WindowIcon from '@mui/icons-material/Window';
 import OutboxIcon from '@mui/icons-material/Outbox';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ApiIcon from '@mui/icons-material/Api';
@@ -79,18 +80,18 @@ export default function DropdownIcon() {
                 </ListItem>
               </Link>
 
-              <Link href='/' style={listItemStyle}>
+              <Link href='/homePage' style={listItemStyle}>
                 <ListItem>
                     <ListItemButton>
                         <ListItemIcon>
-                            <HomeIcon />
+                            <WindowIcon />
                         </ListItemIcon>
                         <ListItemText primary="All Kudos" />
                     </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link href='/' style={listItemStyle}>
+              <Link href='/giveKudos' style={listItemStyle}>
                 <ListItem>
                     <ListItemButton>
                     <ListItemIcon>
@@ -101,7 +102,7 @@ export default function DropdownIcon() {
                 </ListItem>
               </Link>
 
-              <Link href='/' style={listItemStyle}>
+              <Link href='/myKudos' style={listItemStyle}>
                 <ListItem>
                     <ListItemButton>
                     <ListItemIcon>
@@ -112,7 +113,7 @@ export default function DropdownIcon() {
                 </ListItem>
               </Link>
 
-              <Link href='/' style={listItemStyle}>
+              <Link href='/about' style={listItemStyle}>
                 <ListItem>
                     <ListItemButton>
                     <ListItemIcon>
