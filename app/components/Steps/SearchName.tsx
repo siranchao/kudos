@@ -1,19 +1,12 @@
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
 
-
-export default function SearchName({addReceiver}: any) {
-    const [user, setUser] = useState([]);
+export default function SearchName({addReceiver, users}: any) {
     const [name, setName] = useState('');
-
-    const [graphData, setGraphData] = useState([]);
-    const [searchTerms, setSearchTerms] = useState('');
-
-    const sendName = () => {
-        addReceiver(name);
-    }
+    const sendName = () => addReceiver(name);
 
     return (
         < div
@@ -21,26 +14,27 @@ export default function SearchName({addReceiver}: any) {
         >
             <h6>You can search and add multiple receivers</h6>
 
-            {/* <Autocomplete
-                disablePortal
-                onChange={handleChange} 
-                id="combo-box-demo"
-                options={user}
-                sx={{ maxWidth: 400, minWidth: 300, m: `.75rem auto` }}
-                renderInput={(params) => <TextField {...params} label="Name" />}
-            /> */}
+            { users && 
+                <div>
+                    <Autocomplete
+                        id="combo-box-demo"
+                        sx={{ maxWidth: 400, minWidth: 300, m: `.75rem auto` }}
+                        options={users.map((item: any) => item.name)}
+                        renderInput={(params) => <TextField {...params} label="Select User" />}
 
-
-            {/* <h6>Or</h6>
+                        onChange={(e: any, value: any) => setName(value)}
+                    />
+                    <h6>Or</h6>
+                </div>
+            }
             <div style={{ maxWidth: 400, minWidth: 300, margin: `0 auto` }}>
                 <TextField
                     id="input-name"
                     label="Enter Name"
                     fullWidth
-
-                    onChange={handleChange}
+                    onChange={(e: any) => setName(e.target.value)}
                 />
-            </div> */}
+            </div>
 
             <div style={{ cursor: `pointer`, display: `block`, margin: `1rem auto` }} onClick={sendName}>
                 <PersonAddAlt1RoundedIcon

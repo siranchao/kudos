@@ -26,10 +26,6 @@ export default function GiveKudos() {
     return (
         <>
             <div className={styles.giveKudos}>
-                <div>
-                    <h3>Create Your Own Kudo</h3>
-                </div>
-                <hr />
                 <Process clicked={clicked} setClick={setClick} />
 
                 <div style={{ padding: '4rem 0' }}>

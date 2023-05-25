@@ -3,10 +3,11 @@ import TextField from '@mui/material/TextField';
 import PostAddRoundedIcon from '@mui/icons-material/PostAddRounded';
 
 export default function Message({addMessage}: any) {
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState<string[]>([]);
 
     const handleChange = (event: any) => {
-        setMessage(event.target.value);
+        const lines: string[] = event.target.value.split('\n')
+        setMessage(lines);
     };
 
     const sendMessage = () => {

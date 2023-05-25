@@ -30,6 +30,7 @@
     "react-icons": "^4.8.0",
     "react-resize-observer": "^1.1.1",
     "sharp": "^0.32.1",
+    "swr": "^2.1.5",
     "typescript": "5.0.4"
   },
   "devDependencies": {

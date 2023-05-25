@@ -1,5 +1,5 @@
 
-export const newKudo = async (receiver: string[], gif: any, newMessage: string, sender: string) => {
+export const newKudo = async (receiver: string[], gif: any, newMessage: string[], sender: string) => {
 
     if (receiver.length === 0) {
       console.log("No Receiver")
