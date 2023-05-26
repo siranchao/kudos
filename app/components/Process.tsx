@@ -14,9 +14,9 @@ import CardContent from '@mui/material/CardContent';
 import SearchName from "./Steps/SearchName";
 import GifGrid from './Steps/GifGrid';
 import Message from './Steps/Message';
-import { newKudo } from '../controller/newKudo'
-
 import useSWR from 'swr'
+import { useAtom } from 'jotai'
+import { receiverAtom, gifIdAtom, newMessageAtom, senderAtom } from '../../store'
 
 async function fetcher(input: RequestInfo, init: RequestInit, ...args: any[]) {
     const res = await fetch(input, init);
@@ -29,32 +29,33 @@ const randomColor = () => {
 }
 
 
-export default function Process({ clicked, setClick }: any) {
+export default function Process() {
     const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/users', fetcher)
 
-    const sender: string = "Siran"
+    //Kudo State for Context
     const steps: string[] = ['Select Receiver', 'Choose a Gif', 'Send Your Message'];
     const date: string = new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
     })
-
     const [activeStep, setActiveStep] = useState(0);
-    const [skipped, setSkipped] = useState(new Set());
 
-    //Kudo State for Context
-    const [newMessage, setNewMessage] = useState<string[]>([])
-    const [receiver, setReceiver] = useState<string[]>([])
-    const [gif, setGif] = useState<any>("")
+    const [gif, setGif] = useState<any>()
+
+    const [receiver, setReceiver] = useAtom(receiverAtom);
+    const [gifId, setGifId] = useAtom(gifIdAtom);
+    const [newMessage, setNewMessage] = useAtom(newMessageAtom);
+    const [sender, setSender] = useAtom(senderAtom);
 
     const addMessage = (message: string[]) => {
         setNewMessage(message)
     }
 
-    const onGifClick = (gif: string, e: any) => {
+    const onGifClick = (gif: any, e: any) => {
         e.preventDefault();
         setGif(gif);
+        setGifId(gif.id);
     }
 
     const addReceiver = (name: string) => {
@@ -77,18 +78,8 @@ export default function Process({ clicked, setClick }: any) {
         }
     }
 
-    const isStepSkipped = (step: number) => {
-        return skipped.has(step);
-    };
-
     const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
         window.scrollTo({
             top: 200,
             left: 0,
@@ -98,15 +89,6 @@ export default function Process({ clicked, setClick }: any) {
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleSkip = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped((prevSkipped) => {
-            const newSkipped = new Set(prevSkipped.values());
-            newSkipped.add(activeStep);
-            return newSkipped;
-        });
     };
 
     const handleReset = () => {
@@ -120,11 +102,6 @@ export default function Process({ clicked, setClick }: any) {
             behavior: 'smooth'
         });
     };
-
-    const handleCreate = () => {
-        newKudo(receiver, gif, newMessage, sender);
-    }
-
 
     return (
         <>
@@ -186,7 +163,6 @@ export default function Process({ clicked, setClick }: any) {
                 <hr />
                 <h3>Preview</h3>
                 <div>
-
                     <Card sx={{ maxWidth: 345, boxShadow: 10, m: '0 auto', mb: 4 }} className="d-flex flex-column">
                         <CardHeader
                             avatar={

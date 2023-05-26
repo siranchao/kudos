@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Autocomplete from '@mui/material/Autocomplete';
+import { Autocomplete, TextField, Chip } from '@mui/material';
 import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
 
 export default function SearchName({addReceiver, users}: any) {
@@ -17,12 +15,23 @@ export default function SearchName({addReceiver, users}: any) {
             { users && 
                 <div>
                     <Autocomplete
-                        id="combo-box-demo"
+                        id="select-user"
                         sx={{ maxWidth: 400, minWidth: 300, m: `.75rem auto` }}
-                        options={users.map((item: any) => item.name)}
-                        renderInput={(params) => <TextField {...params} label="Select User" />}
-
                         onChange={(e: any, value: any) => setName(value)}
+                        options={users.map((item: any) => item.name)}
+                        renderOption={(props, option) => {
+                            return (
+                              <li {...props} key={option}>
+                                {option}
+                              </li>
+                            );
+                        }}
+                        renderTags={(tagValue, getTagProps) => {
+                            return tagValue.map((option, index) => (
+                              <Chip {...getTagProps({ index })} key={option} label={option} />
+                            ))
+                        }}
+                        renderInput={(params) => <TextField {...params} label="Select User" />}
                     />
                     <h6>Or</h6>
                 </div>

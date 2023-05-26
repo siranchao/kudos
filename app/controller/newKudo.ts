@@ -1,5 +1,5 @@
 
-export const newKudo = async (receiver: string[], gif: any, newMessage: string[], sender: string) => {
+export const newKudo = async (receiver: string[], gifId: string, newMessage: string[], sender: string) => {
 
     if (receiver.length === 0) {
       console.log("No Receiver")
@@ -8,7 +8,7 @@ export const newKudo = async (receiver: string[], gif: any, newMessage: string[]
       const data = {
         sender: sender,
         receiver: receiver,
-        kudoGif: gif.id,
+        kudoGif: gifId,
         message: newMessage,
       }
   

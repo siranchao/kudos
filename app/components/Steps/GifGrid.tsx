@@ -18,7 +18,6 @@ export default function GifGrid({ onGifClick }: any) {
         setKeyword(event.target.value)
     }
 
-    
     const fetchGifs = (offset: any) => {
         if (keyword) {
             return giphyFetch.search(keyword, { offset, limit: 10 });
