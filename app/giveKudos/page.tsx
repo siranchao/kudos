@@ -22,12 +22,15 @@ export default function GiveKudos() {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
+
+            console.log(receiver, gifId, newMessage, sender)
+
+            setReceiver([]);
+            setGifId("");
+            setNewMessage([]);
+            setSender("");  
             //router.push('/homePage')
         }, 2000)
-        setReceiver([]);
-        setGifId("");
-        setNewMessage([]);
-        setSender("");  
     }
 
     return (

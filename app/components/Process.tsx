@@ -188,12 +188,17 @@ export default function Process() {
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
                             {newMessage.map((item, index) => {
-                                if(index === 0) {
-                                    return <span key={index}><strong>&quot;{item}</strong><br/></span>
-                                } else if(index === newMessage.length - 1) {
-                                    return <span key={index}><strong>{item}&quot;</strong><br/></span>
-                                } else {
-                                    return <span key={index}><strong>{item}</strong><br/></span>
+                                if (newMessage.length === 1) {
+                                    return <span key={index}><strong>&quot;{item}&quot;</strong><br/></span>
+                                }
+                                else {
+                                    if(index === 0) {
+                                        return <span key={index}><strong>&quot;{item}</strong><br/></span>
+                                    } else if(index === newMessage.length - 1) {
+                                        return <span key={index}><strong>{item}&quot;</strong><br/></span>
+                                    } else {
+                                        return <span key={index}><strong>{item}</strong><br/></span>
+                                    }
                                 }
                             })
                             }
