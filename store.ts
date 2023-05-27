@@ -1,7 +1,16 @@
 import { atom } from "jotai";
 
 //create new atom for Kudo
-export const receiverAtom = atom<string[]>([]);
-export const gifIdAtom  = atom<string>("");
-export const newMessageAtom  = atom<string[]>([]);
-export const senderAtom  = atom<string>("Siran");
+interface KudoAtom {
+    gif: any;
+    sender: string;
+    receiver: string[];
+    newMessage: string[];
+}
+
+export const kudoAtom = atom<KudoAtom>({
+    gif: null,
+    sender: "Siran",
+    receiver: [],
+    newMessage: [],
+})

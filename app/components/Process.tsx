@@ -16,7 +16,8 @@ import GifGrid from './Steps/GifGrid';
 import Message from './Steps/Message';
 import useSWR from 'swr'
 import { useAtom } from 'jotai'
-import { receiverAtom, gifIdAtom, newMessageAtom, senderAtom } from '../../store'
+import { kudoAtom } from '@/store';
+
 
 async function fetcher(input: RequestInfo, init: RequestInit, ...args: any[]) {
     const res = await fetch(input, init);
@@ -40,26 +41,30 @@ export default function Process() {
         day: '2-digit',
     })
     const [activeStep, setActiveStep] = useState(0);
+    const [kudo, setKudo] = useAtom(kudoAtom);
 
-    const [gif, setGif] = useState<any>()
-
-    const [receiver, setReceiver] = useAtom(receiverAtom);
-    const [gifId, setGifId] = useAtom(gifIdAtom);
-    const [newMessage, setNewMessage] = useAtom(newMessageAtom);
-    const [sender, setSender] = useAtom(senderAtom);
 
     const addMessage = (message: string[]) => {
-        setNewMessage(message)
+        //setNewMessage(message)
+        setKudo({
+            ...kudo,
+            newMessage: message
+        });
     }
 
     const onGifClick = (gif: any, e: any) => {
         e.preventDefault();
-        setGif(gif);
-        setGifId(gif.id);
+        setKudo({
+            ...kudo,
+            gif: gif
+        });
     }
 
     const addReceiver = (name: string) => {
-        setReceiver([...receiver, name]);
+        setKudo({
+            ...kudo,
+            receiver: [...kudo.receiver, name]
+        })
     }
 
     //switch from different components
@@ -93,9 +98,12 @@ export default function Process() {
 
     const handleReset = () => {
         setActiveStep(0);
-        setReceiver([]);
-        setGif("");
-        setNewMessage([]);
+        setKudo({
+            ...kudo,
+            gif: null,
+            receiver: [],
+            newMessage: []
+        })
         window.scrollTo({
             top: 0,
             left: 0,
@@ -167,34 +175,34 @@ export default function Process() {
                         <CardHeader
                             avatar={
                                 <Avatar sx={{ bgcolor: randomColor() }} aria-label="recipe">
-                                    {sender ? sender[0] : ""}
+                                    {kudo.sender ? kudo.sender[0] : ""}
                                 </Avatar>
                             }
-                            title={sender}
+                            title={kudo.sender}
                             subheader={String(date)}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                Send Kudos to {receiver.map((item, index) =>
+                                Send Kudos to {kudo.receiver.map((item, index) =>
                                     <strong key={index}>@{item}  </strong>
                                 )}
                             </Typography>
 
                         </CardContent>
-                        {gif && (
-                            <Gif style={{ display: "block", margin: "0 auto" }} gif={gif} width={250} />
+                        {kudo.gif && (
+                            <Gif style={{ display: "block", margin: "0 auto" }} gif={kudo.gif} width={250} />
                         )
                         }
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                            {newMessage.map((item, index) => {
-                                if (newMessage.length === 1) {
+                            {kudo.newMessage.map((item, index) => {
+                                if (kudo.newMessage.length === 1) {
                                     return <span key={index}><strong>&quot;{item}&quot;</strong><br/></span>
                                 }
                                 else {
                                     if(index === 0) {
                                         return <span key={index}><strong>&quot;{item}</strong><br/></span>
-                                    } else if(index === newMessage.length - 1) {
+                                    } else if(index === kudo.newMessage.length - 1) {
                                         return <span key={index}><strong>{item}&quot;</strong><br/></span>
                                     } else {
                                         return <span key={index}><strong>{item}</strong><br/></span>

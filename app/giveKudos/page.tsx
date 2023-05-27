@@ -7,29 +7,27 @@ import Process from "../components/Process"
 import styles from '../styles/giveKudos.module.css'
 import { newKudo } from '../controller/newKudo'
 import { useAtom } from 'jotai'
-import { receiverAtom, gifIdAtom, newMessageAtom, senderAtom } from '../../store'
+import { kudoAtom } from '@/store';
 
 export default function GiveKudos() {
     const [loading, setLoading] = useState(false)
     const router = useRouter();
+    const [kudo, setKudo] = useAtom(kudoAtom);
 
-    const [receiver, setReceiver] = useAtom(receiverAtom);
-    const [gifId, setGifId] = useAtom(gifIdAtom);
-    const [newMessage, setNewMessage] = useAtom(newMessageAtom);
-    const [sender, setSender] = useAtom(senderAtom);
 
     const createKudos = () => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
 
-            console.log(receiver, gifId, newMessage, sender)
+            console.log(kudo)
 
-            setReceiver([]);
-            setGifId("");
-            setNewMessage([]);
-            setSender("");  
-            //router.push('/homePage')
+            setKudo({
+                gif: null,
+                sender: "Siran",
+                receiver: [],
+                newMessage: []
+            })
         }, 2000)
     }
 
