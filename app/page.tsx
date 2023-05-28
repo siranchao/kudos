@@ -1,6 +1,12 @@
 import Banner from './components/Banner'
 import Link from 'next/link'
 import styles from './styles/home.module.css'
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Kudos | Home',
+  description: 'Kudos Home Page',
+};
 
 export default function Home() {
   const isAuthenticated: boolean = false

@@ -1,4 +1,12 @@
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Kudos | About Us',
+  description: 'Kudos About Us Page',
+};
+
+
 
 export default function About() {
 

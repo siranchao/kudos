@@ -8,6 +8,12 @@ import styles from '../styles/giveKudos.module.css'
 import { newKudo } from '../controller/newKudo'
 import { useAtom } from 'jotai'
 import { kudoAtom } from '@/store';
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Kudos | Create New',
+  description: 'Kudos Create New Kudo Page',
+};
 
 export default function GiveKudos() {
     const [loading, setLoading] = useState(false)
