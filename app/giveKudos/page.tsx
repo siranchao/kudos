@@ -20,13 +20,10 @@ export default function GiveKudos() {
     const router = useRouter();
     const [kudo, setKudo] = useAtom(kudoAtom);
 
-
     const createKudos = () => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-
-            console.log(kudo)
 
             setKudo({
                 gif: null,
@@ -50,6 +47,7 @@ export default function GiveKudos() {
                         endIcon={<SendIcon />}
                         onClick={createKudos}
                         loading={loading}
+                        disabled={kudo.gif === null || kudo.receiver.length === 0 || kudo.newMessage.length === 0}
                     >
                         {loading ? <span>Sending Your Kudo</span> : <span>Create Kudo!</span>}
                     </LoadingButton>
@@ -57,4 +55,5 @@ export default function GiveKudos() {
             </div>
         </>
     )
+
 }
