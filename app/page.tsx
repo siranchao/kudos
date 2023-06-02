@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Kudos Home Page',
 };
 
-export default function Home() {
+export default function Index() {
   const isAuthenticated: boolean = false
 
   return (

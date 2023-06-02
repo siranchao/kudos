@@ -195,7 +195,7 @@ export default function Process() {
                         }
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                            {kudo.newMessage.map((item, index) => {
+                            {kudo.newMessage.map((item: string, index: number) => {
                                 if (kudo.newMessage.length === 1) {
                                     return <span key={index}><strong>&quot;{item}&quot;</strong><br/></span>
                                 }
@@ -208,8 +208,7 @@ export default function Process() {
                                         return <span key={index}><strong>{item}</strong><br/></span>
                                     }
                                 }
-                            })
-                            }
+                            })}
                             </Typography>
                         </CardContent>
                     </Card>

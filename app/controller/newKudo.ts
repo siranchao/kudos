@@ -1,5 +1,5 @@
 
-export const newKudo = async (receiver: string[], gifId: string, newMessage: string[], sender: string) => {
+export const newKudo = async (sender: string, receiver: string[], newMessage: string[], gifId: string) => {
 
     if (receiver.length === 0) {
       console.log("No Receiver")
@@ -13,16 +13,17 @@ export const newKudo = async (receiver: string[], gifId: string, newMessage: str
       }
   
       try {
-        const res = await fetch(`api/kudos`, {
+        const res = await fetch(`http://localhost:8080/api/kudo/newKudo`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data)
         });
-  
         const json = await res.json()
-        console.log(json);
+        if(json) {
+          console.log("Success creating New Kudo")
+        }
   
       } catch (error) {
         console.error(error)

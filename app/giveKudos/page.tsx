@@ -24,13 +24,14 @@ export default function GiveKudos() {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-
+            newKudo(kudo.sender, kudo.receiver, kudo.newMessage, kudo.gif.id)
             setKudo({
                 gif: null,
                 sender: "Siran",
                 receiver: [],
                 newMessage: []
             })
+            router.push('/homePage')
         }, 2000)
     }
 
