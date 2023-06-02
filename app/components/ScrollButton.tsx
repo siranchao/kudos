@@ -1,42 +1,37 @@
 'use client';
-import { useState } from 'react';
-import { FaArrowCircleUp } from 'react-icons/fa';
-import styles from '../styles/homePage.module.css';
-
-
-const isBrowser: boolean = typeof window !== "undefined"
+import React, { useState, useEffect } from 'react';
+import styles from '../styles/homePage.module.css'
 
 export default function ScrollButton() {
-	const [visible, setVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
-	const toggleVisible = () => {
-		const scrolled: number = document.documentElement.scrollTop;
-		if (scrolled > 300) {
-			setVisible(true)
-		}
-		else if (scrolled <= 300) {
-			setVisible(false)
-		}
-	};
+  useEffect(() => {
+    // Add a scroll event listener to check if the user has scrolled enough to show the button
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      setIsVisible(scrollTop > 300); // Adjust this value based on when you want the button to appear
+    };
 
-	const scrollToTop = () => {
-		if (isBrowser) {
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
-		}
-	};
-	if (isBrowser) {
-		window.addEventListener('scroll', toggleVisible);
-	}
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      // Clean up the event listener when the component is unmounted
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-	return (
-		<div className={styles.scrollButton}>
-			<FaArrowCircleUp onClick={scrollToTop}
-				style={{
-					display: visible ? 'inline' : 'none'
-				}} />
-		</div>
-	);
-}
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  return (
+    <button
+	  className={isVisible ? styles.backToTopVisible : styles.backToTopHidden}
+      onClick={scrollToTop}
+    >
+      Back to Top
+    </button>
+  );
+};

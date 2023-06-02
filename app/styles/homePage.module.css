@@ -35,17 +35,32 @@
 }
 
 /* ScrollButton */
-.scrollButton {
+.backToTopHidden {
     position: fixed;
-    width: 100%;
-    left: 95%;
-    bottom: 70px;
-    height: 20px;
-    font-size: 3rem;
-    z-index: 1;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
     cursor: pointer;
-    color:grey;
-    background: grey;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+  
+.backToTopVisible {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 
