@@ -1,7 +1,9 @@
 
 import MainGrid from '../components/MainGrid';
+import ScrollButton from '../components/ScrollButton';
 import { Metadata } from 'next';
 import styles from '../styles/homePage.module.css';
+import InfoCard from '../components/InfoCard';
  
 export const metadata: Metadata = {
   title: 'Kudos | Showcase',
@@ -27,9 +29,9 @@ export default async function Home() {
             {data.data.length > 0 ? 
             <MainGrid kudos={data.data}/>
             :
-            <h5>No Kudos</h5>}
+            <InfoCard info={"No Kudos can be found at the moment, please try again later. Or try to create a new kudo"}/>}
     
-            {/* <ScrollButton /> */}
+            <ScrollButton />
             {/* <PaginationBar /> */}
         </div>
     )
