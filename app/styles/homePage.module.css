@@ -34,6 +34,21 @@
     justify-content: space-between;
 }
 
+/* ScrollButton */
+.scrollButton {
+    position: fixed;
+    width: 100%;
+    left: 95%;
+    bottom: 70px;
+    height: 20px;
+    font-size: 3rem;
+    z-index: 1;
+    cursor: pointer;
+    color:grey;
+    background: grey;
+}
+
+
 @media only screen and (max-width: 1024px) {
     .kudosGrid {
         grid-template-columns: repeat(2, 1fr);
