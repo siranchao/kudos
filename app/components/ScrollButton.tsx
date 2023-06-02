@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { FaArrowCircleUp } from 'react-icons/fa';
 import styles from '../styles/homePage.module.css';
