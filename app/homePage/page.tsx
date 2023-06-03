@@ -1,4 +1,3 @@
-
 import MainGrid from '../components/MainGrid';
 import ScrollButton from '../components/ScrollButton';
 import { Metadata } from 'next';
@@ -20,6 +19,9 @@ async function getData() {
 
 export default async function Home() {
     const data: any = await getData()
+    const sortedData = data.data.sort((a: any, b: any) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    })
 
     return (
         <div className={styles.kudosHomePage}>
@@ -27,12 +29,11 @@ export default async function Home() {
             <hr />
 
             {data.data.length > 0 ? 
-            <MainGrid kudos={data.data}/>
+            <MainGrid kudos={sortedData}/>
             :
             <InfoCard info={"No Kudos can be found at the moment, please try again later. Or try to create a new kudo"}/>}
     
             <ScrollButton />
-            {/* <PaginationBar /> */}
         </div>
     )
 }

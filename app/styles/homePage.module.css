@@ -8,7 +8,7 @@
 .kudosGrid {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .searchBar {
@@ -63,17 +63,37 @@
     transition: opacity 0.3s ease;
 }
 
+.paginationBar {
+    margin: 2rem 0;
+}
 
-@media only screen and (max-width: 1024px) {
+.paginationItem li {
+    padding-bottom: 0;
+}
+
+
+@media only screen and (max-width: 1400px) {
     .kudosGrid {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .kudosGrid {
+        grid-template-columns: repeat(3, 1fr);
     }
     .filter {
         justify-content: space-around
     }
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 992px) {
+    .kudosGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 576px) {
     .kudosGrid {
         grid-template-columns: repeat(1, 1fr);
         justify-items: center;

@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react';
 import { Autocomplete, TextField, Chip } from '@mui/material';
 import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';

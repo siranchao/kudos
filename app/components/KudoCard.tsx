@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -16,32 +16,31 @@ import { GiphyFetch } from "@giphy/js-fetch-api"
 import styles from '../styles/homePage.module.css';
 
 
-
 //Giphy API key
 const gf: any = new GiphyFetch("pPpjPbnxhrccqEzHjNvYuQ7tW1JcCbsE")
-
-const GifDisplay = (gifID: string) => {
-    const [gif, setGif] = useState(null)
-    useAsync(async () => {
-        if (gifID !== null) {
-            const { data } = await gf.gif(gifID)
-            setGif(data)
-        }
-    }, [])
-
-    return gif !== null && <Gif style={{ display: "block", margin: "0 auto" }} gif={gif} width={200} />
-}
 
 const randomColor = () => {
     const colorList = ["#CD0000", "#118847", "#FFD440", "#1080A6", "#551A8B", "#009ADB"]
     return colorList[Math.floor(Math.random() * colorList.length)]
 }
 
-
 export default function KudoCard( { kudo }: any) {
+    const [gif, setGif] = useState(null)
     const [likedBtn, setLikedBtn] = useState(false);
     const [thumbUpBtn, setThumbUpBtn] = useState(false);
     const [thumbUpNum, setThumbUpNum] = useState(kudo.likes)
+
+    useEffect(() => {
+        const fetchGif = async () => {
+            try {
+                const { data } = await gf.gif(kudo.kudoGif)
+                setGif(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchGif();
+    })
 
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 10 }} className="d-flex flex-column" >
@@ -60,8 +59,7 @@ export default function KudoCard( { kudo }: any) {
                 </Typography>
             </CardContent>
             <CardContent>
-                {/* <GifDisplay gifID={kudo.kudoGif} /> */}
-                { GifDisplay(kudo.kudoGif) }
+                {gif !== null && <Gif style={{ display: "block", margin: "0 auto" }} gif={gif} width={200} />}
             </CardContent>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">

@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import PostAddRoundedIcon from '@mui/icons-material/PostAddRounded';
