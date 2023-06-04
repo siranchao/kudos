@@ -12,7 +12,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Gif } from "@giphy/react-components"
 import styles from '../styles/homePage.module.css';
-import { useRouter } from 'next/navigation';
+
 
 
 const randomColor = () => {
@@ -20,15 +20,10 @@ const randomColor = () => {
     return colorList[Math.floor(Math.random() * colorList.length)]
 }
 
-export default function KudoCard( { kudo }: any) {
-    const router: any = useRouter();
+export default function KudoCardDetail( { kudo }: any) {
     const [likedBtn, setLikedBtn] = useState(false);
     const [thumbUpBtn, setThumbUpBtn] = useState(false);
     const [thumbUpNum, setThumbUpNum] = useState(kudo.likes)
-
-    const clickCard = () => {
-        router.push(`/homePage/${kudo._id}`)
-    }
 
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 10 }} className="d-flex flex-column" >
@@ -41,16 +36,16 @@ export default function KudoCard( { kudo }: any) {
                 title={kudo.sender}
                 subheader={kudo.createdAt.split('T')[0]}
             />
-            <CardContent onClick={clickCard} >
-                <Typography variant="body2" color="text.secondary" className={styles.visitCard}>
+            <CardContent >
+                <Typography variant="body2" color="text.secondary">
                     Send Kudos to {kudo.receiver.map((name: string, index: number) => <strong key={index}>@{name}  </strong>)}
                 </Typography>
             </CardContent>
             <CardContent>
                 {kudo.gif !== null && <Gif style={{ display: "block", margin: "0 auto" }} gif={kudo.gif} width={200} />}
             </CardContent>
-            <CardContent onClick={clickCard}>
-                <Typography variant="body2" color="text.secondary" className={styles.visitCard}>
+            <CardContent>
+                <Typography variant="body2" color="text.secondary">
                 {kudo.message.map((item: string, index: number) => {
                                 if (kudo.message.length === 1) {
                                     return <span key={index}><strong>&quot;{item}&quot;</strong><br/></span>
