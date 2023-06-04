@@ -34,7 +34,7 @@ export default function GiveKudos() {
             })
             router.refresh()
             router.push('/homePage')
-        }, 3000)
+        }, 2000)
     }
 
     return (
