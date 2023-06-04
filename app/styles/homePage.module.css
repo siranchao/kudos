@@ -93,14 +93,15 @@
     .kudosGrid {
         grid-template-columns: repeat(3, 1fr);
     }
-    .filter {
-        justify-content: space-around
-    }
+
 }
 
 @media only screen and (max-width: 992px) {
     .kudosGrid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .searchBar {
+        flex-wrap: wrap;
     }
 }
 
@@ -109,7 +110,5 @@
         grid-template-columns: repeat(1, 1fr);
         justify-items: center;
     }
-    .filter {
-        flex-direction: column;
-    }
+
 }

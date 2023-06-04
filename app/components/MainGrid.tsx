@@ -120,7 +120,7 @@ export default function MainGrid({ kudos }: any) {
                             labelId="search-option-lable"
                             value={searchOption}
                             label="Search By"
-                            sx={{ mr: 1, minWidth: 120 }}
+                            sx={{ mr: 1, mb: 1, minWidth: 120 }}
                             onChange={(event: any) => { setSearchOption(event.target.value) }}
                         >
                             <MenuItem value="Sender">Sender</MenuItem>
@@ -134,13 +134,16 @@ export default function MainGrid({ kudos }: any) {
                         label="Keyword"
                         placeholder="Keyword"
                         value={searchValue}
-                        sx={{ width: 300, minWidth: 120, mr: 1 }}
+                        sx={{ width: 250, minWidth: 120, mr: 1, mb: 1}}
                         onChange={(event: any) => { setSearchValue(event.target.value) }}
                     />
-                    <Button variant="contained" size='small' sx={{ height: 30, mr: 1 }} onClick={handleSearch}>Search</Button>
-                    <Button variant="outlined" size='small' sx={{ height: 30 }} onClick={handleReset}>Reset</Button>
 
+                    <div>    
+                        <Button variant="contained" size='small' sx={{ height: 30, mr: 1 }} onClick={handleSearch}>Search</Button>
+                        <Button variant="outlined" size='small' sx={{ height: 30 }} onClick={handleReset}>Reset</Button>
+                    </div>
                 </div>
+
                 <div className={styles.filterBar}>
                     <FormControl>
                         <InputLabel id="select-option">Sort By</InputLabel>
