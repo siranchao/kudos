@@ -16,8 +16,8 @@ import { GiphyFetch } from "@giphy/js-fetch-api"
 import styles from '../styles/homePage.module.css';
 
 
-//Giphy API key
-const gf: any = new GiphyFetch("pPpjPbnxhrccqEzHjNvYuQ7tW1JcCbsE")
+// //Giphy API key
+// const gf: any = new GiphyFetch("pPpjPbnxhrccqEzHjNvYuQ7tW1JcCbsE")
 
 const randomColor = () => {
     const colorList = ["#CD0000", "#118847", "#FFD440", "#1080A6", "#551A8B", "#009ADB"]
@@ -25,22 +25,22 @@ const randomColor = () => {
 }
 
 export default function KudoCard( { kudo }: any) {
-    const [gif, setGif] = useState(null)
+    // const [gif, setGif] = useState(null)
     const [likedBtn, setLikedBtn] = useState(false);
     const [thumbUpBtn, setThumbUpBtn] = useState(false);
     const [thumbUpNum, setThumbUpNum] = useState(kudo.likes)
 
-    useEffect(() => {
-        const fetchGif = async () => {
-            try {
-                const { data } = await gf.gif(kudo.kudoGif)
-                setGif(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchGif();
-    })
+    // useEffect(() => {
+    //     const fetchGif = async () => {
+    //         try {
+    //             const { data } = await gf.gif(kudo.kudoGif)
+    //             setGif(data)
+    //         } catch (error) {
+    //             console.log(error)
+    //         }
+    //     }
+    //     fetchGif();
+    // })
 
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 10 }} className="d-flex flex-column" >
@@ -59,7 +59,7 @@ export default function KudoCard( { kudo }: any) {
                 </Typography>
             </CardContent>
             <CardContent>
-                {gif !== null && <Gif style={{ display: "block", margin: "0 auto" }} gif={gif} width={200} />}
+                {kudo.gif !== null && <Gif style={{ display: "block", margin: "0 auto" }} gif={kudo.gif} width={200} />}
             </CardContent>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">

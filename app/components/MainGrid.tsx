@@ -7,6 +7,7 @@ import styles from '../styles/homePage.module.css';
 import KudoCard from "./KudoCard"
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Loader from './Loader';
 
 const PER_PAGE: number = 12;
 const splitKudos = (kudos: any[]) => {
@@ -70,7 +71,7 @@ export default function MainGrid({ kudos }: any) {
                         </Select>
                 </div>
             </div> */}
-            {loading ? <div>Loading...</div> :
+            {loading ? <Loader /> :
             <>
                 <div className={styles.kudosGrid}>
                     {kudosList[currentPage - 1].map((kudo: any, index: number) => (

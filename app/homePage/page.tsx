@@ -10,12 +10,13 @@ export const metadata: Metadata = {
 };
 
 async function getData() {
-    const res: any = await fetch('http://localhost:8080/api/kudo/allKudos', { cache: 'no-store' });
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    return res.json();
+  console.log("===================== fetching data... =====================")
+  const res: any = await fetch('http://localhost:8080/api/kudo/allKudos', { cache: 'no-store' });
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
   }
+  return res.json();
+}
 
 export default async function Home() {
     const data: any = await getData()
