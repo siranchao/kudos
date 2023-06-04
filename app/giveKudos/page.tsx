@@ -20,17 +20,19 @@ export default function GiveKudos() {
     const router = useRouter();
     const [kudo, setKudo] = useAtom(kudoAtom);
 
-    const createKudos = () => {
+    const createKudos = async () => {
         setLoading(true)
+        await newKudo(kudo.sender, kudo.receiver, kudo.message, kudo.gif)
+
         setTimeout(() => {
             setLoading(false)
-            newKudo(kudo.sender, kudo.receiver, kudo.newMessage, kudo.gif.id)
             setKudo({
-                gif: null,
                 sender: "Siran",
                 receiver: [],
-                newMessage: []
+                message: [],
+                gif: null,
             })
+            router.refresh()
             router.push('/homePage')
         }, 2000)
     }
@@ -48,7 +50,7 @@ export default function GiveKudos() {
                         endIcon={<SendIcon />}
                         onClick={createKudos}
                         loading={loading}
-                        disabled={kudo.gif === null || kudo.receiver.length === 0 || kudo.newMessage.length === 0}
+                        disabled={kudo.gif === null || kudo.receiver.length === 0 || kudo.message.length === 0}
                     >
                         {loading ? <span>Sending Your Kudo</span> : <span>Create Kudo!</span>}
                     </LoadingButton>

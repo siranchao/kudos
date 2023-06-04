@@ -13,13 +13,24 @@
 
 .searchBar {
     text-align: center;
-    margin: 2rem auto;
+    margin: 1rem auto;
     max-width: 100%;
     min-width: 200px;
-
     display: flex;
     flex-direction: row;
-    justify-content: space-between
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.filterBar {
+    text-align: center;
+    margin: 1rem auto;
+    max-width: 100%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Card module */
@@ -82,14 +93,15 @@
     .kudosGrid {
         grid-template-columns: repeat(3, 1fr);
     }
-    .filter {
-        justify-content: space-around
-    }
+
 }
 
 @media only screen and (max-width: 992px) {
     .kudosGrid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .searchBar {
+        flex-wrap: wrap;
     }
 }
 
@@ -98,7 +110,5 @@
         grid-template-columns: repeat(1, 1fr);
         justify-items: center;
     }
-    .filter {
-        flex-direction: column;
-    }
+
 }
