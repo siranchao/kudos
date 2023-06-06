@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -10,14 +10,10 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { useAsync } from "react-async-hook"
 import { Gif } from "@giphy/react-components"
-import { GiphyFetch } from "@giphy/js-fetch-api"
 import styles from '../styles/homePage.module.css';
+import { useRouter } from 'next/navigation';
 
-
-// //Giphy API key
-// const gf: any = new GiphyFetch("pPpjPbnxhrccqEzHjNvYuQ7tW1JcCbsE")
 
 const randomColor = () => {
     const colorList = ["#CD0000", "#118847", "#FFD440", "#1080A6", "#551A8B", "#009ADB"]
@@ -25,22 +21,14 @@ const randomColor = () => {
 }
 
 export default function KudoCard( { kudo }: any) {
-    // const [gif, setGif] = useState(null)
+    const router: any = useRouter();
     const [likedBtn, setLikedBtn] = useState(false);
     const [thumbUpBtn, setThumbUpBtn] = useState(false);
     const [thumbUpNum, setThumbUpNum] = useState(kudo.likes)
 
-    // useEffect(() => {
-    //     const fetchGif = async () => {
-    //         try {
-    //             const { data } = await gf.gif(kudo.kudoGif)
-    //             setGif(data)
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     fetchGif();
-    // })
+    const clickCard = () => {
+        router.push(`/homePage/${kudo._id}`)
+    }
 
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 10 }} className="d-flex flex-column" >
@@ -53,16 +41,16 @@ export default function KudoCard( { kudo }: any) {
                 title={kudo.sender}
                 subheader={kudo.createdAt.split('T')[0]}
             />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
+            <CardContent onClick={clickCard} >
+                <Typography variant="body2" color="text.secondary" className={styles.visitCard}>
                     Send Kudos to {kudo.receiver.map((name: string, index: number) => <strong key={index}>@{name}  </strong>)}
                 </Typography>
             </CardContent>
             <CardContent>
                 {kudo.gif !== null && <Gif style={{ display: "block", margin: "0 auto" }} gif={kudo.gif} width={200} />}
             </CardContent>
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
+            <CardContent onClick={clickCard}>
+                <Typography variant="body2" color="text.secondary" className={styles.visitCard}>
                 {kudo.message.map((item: string, index: number) => {
                                 if (kudo.message.length === 1) {
                                     return <span key={index}><strong>&quot;{item}&quot;</strong><br/></span>

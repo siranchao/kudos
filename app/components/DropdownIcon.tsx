@@ -126,7 +126,7 @@ export default function DropdownIcon() {
           </List>
           <Divider />
           <List>
-              <Link href='/' style={listItemStyle}>
+              <Link href='/login' style={listItemStyle}>
                 <ListItem>
                     <ListItemButton>
                     <ListItemIcon>
@@ -137,7 +137,7 @@ export default function DropdownIcon() {
                 </ListItem>
               </Link>
             
-              <Link href='/' style={listItemStyle}>
+              <Link href='/register' style={listItemStyle}>
                 <ListItem>
                     <ListItemButton>
                     <ListItemIcon>

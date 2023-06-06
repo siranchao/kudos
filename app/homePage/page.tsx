@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 async function getData() {
   console.log("===================== fetching data... =====================")
-  const res: any = await fetch('http://localhost:8080/api/kudo/allKudos', { cache: 'no-store' });
+  const res: any = await fetch(`${process.env.NEXT_PUBLIC_API}/kudo/allKudos`, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }

@@ -13,7 +13,7 @@ export const newKudo = async (sender: string, receiver: string[], message: strin
       }
   
       try {
-        const res = await fetch(`http://localhost:8080/api/kudo/newKudo`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API}/kudo/newKudo`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
