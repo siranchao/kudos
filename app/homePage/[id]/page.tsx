@@ -1,6 +1,6 @@
-
 import KudoCardDetail from "@/app/components/KudoCardDetail";
-
+import Back from "@/app/components/Back";
+import CardDetailTab from "@/app/components/CardDetailTab";
 
 export default async function DisplayKudo({ params }: any) {
     const res: any = await fetch(`http://localhost:8080/api/kudo/oneKudo/${params.id}`, { cache: 'no-store' });
@@ -8,10 +8,12 @@ export default async function DisplayKudo({ params }: any) {
         throw new Error('Failed to fetch data');
     }
     const data: any = await res.json();
-
+    console.log(data.data);
     return (
         <div>
+            <Back />
             <KudoCardDetail kudo={data.data} />
+            <CardDetailTab kudo={data.data} />
         </div>
     )
 }

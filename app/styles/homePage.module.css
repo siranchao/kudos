@@ -85,10 +85,14 @@
 .visitCard:hover {
     cursor: pointer;
     text-decoration: underline;
-    transform: scale(1.05);
+    transform: scale(1.02);
     transition: all 0.2s ease;
 }
 
+.tabPanel {
+    margin: 0 auto;
+    width: 60%;
+}
 
 @media only screen and (max-width: 1400px) {
     .kudosGrid {
@@ -100,7 +104,9 @@
     .kudosGrid {
         grid-template-columns: repeat(3, 1fr);
     }
-
+    .tabPanel {
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width: 992px) {
@@ -110,6 +116,9 @@
     .searchBar {
         flex-wrap: wrap;
     }
+    .tabPanel {
+        width: 80%;
+    }
 }
 
 @media only screen and (max-width: 576px) {
@@ -117,5 +126,7 @@
         grid-template-columns: repeat(1, 1fr);
         justify-items: center;
     }
-
+    .tabPanel {
+        width: 95%;
+    }
 }
