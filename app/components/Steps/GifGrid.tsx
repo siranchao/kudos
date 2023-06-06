@@ -6,7 +6,7 @@ import ResizeObserver from "react-resize-observer";
 import TextField from '@mui/material/TextField';
 
 ////Giphy API key
-const giphyFetch = new GiphyFetch("pPpjPbnxhrccqEzHjNvYuQ7tW1JcCbsE")
+const giphyFetch = new GiphyFetch(`${process.env.NEXT_PUBLIC_GIF_APIKEY}`)
 
 
 export default function GifGrid({ onGifClick }: any) {

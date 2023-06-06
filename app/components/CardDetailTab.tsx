@@ -150,7 +150,7 @@ export default function CardDetailTab({ kudo }: any) {
                               </ListItemIcon>
                               <div style={{width: '100%', display: 'flex', alignItems: 'center'}}>
                                 <ListItemText id="title" primary="GIF Name:" sx={{flex: 1}}/>
-                                <ListItemText id="titleName" secondary={kudo.gif.title} sx={{flex: 2}}/>
+                                <ListItemText id="titleName" secondary={kudo.gif?.title} sx={{flex: 2}}/>
                               </div>
                           </ListItem>
                           <ListItem>
@@ -159,19 +159,27 @@ export default function CardDetailTab({ kudo }: any) {
                               </ListItemIcon>
                               <div style={{width: '100%', display: 'flex', alignItems: 'center'}}>
                                 <ListItemText id="gifUrl" primary="GIF URL:"  sx={{flex: 1}}/>
-                                <a href={kudo.gif.bitly_url} target="_blank" style={{display: 'inline-block',textDecoration: 'none', fontSize: '13px', textAlign: 'left', flex: 2}}>{kudo.gif.bitly_url}</a>
+                                <a href={kudo.gif?.bitly_url} target="_blank" style={{display: 'inline-block',textDecoration: 'none', fontSize: '13px', textAlign: 'left', flex: 2}}>{kudo.gif?.bitly_url}</a>
                               </div>
                           </ListItem>
+                          {kudo.gif.user && (
                           <ListItem>
                               <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
                                 <ProfileIcon />
                               </ListItemIcon>
                               <div style={{width: '100%', display: 'flex', alignItems: 'center'}}>
                                 <ListItemText id="uploader" primary="Author:" sx={{flex: 1}} />
-                                <a href={kudo.gif.user.profile_url} target="_blank" style={{display: 'inline-block',textDecoration: 'none', fontSize: '13px', textAlign: 'left', flex: 2}}>{kudo.gif.user.display_name} (Click for more GIFs)</a>
+                                <a href={kudo.gif.user?.profile_url} target="_blank" 
+                                style={{display: 'inline-block',
+                                textDecoration: 'none', 
+                                fontSize: '13px', 
+                                textAlign: 'left', 
+                                flex: 2}}>
+                                  {kudo.gif.user?.display_name} (Click for more GIFs)</a>
                               </div>
-
                           </ListItem>
+                          )}
+
                           <ListItem>
                               <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
                                 <CodeIcon />

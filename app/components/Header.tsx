@@ -20,9 +20,16 @@ export default function Header() {
               <div className="ontario-columns 
                 ontario-small-6 
                 ontario-application-header__lang-toggle">
-                <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline">
-                Login
-                </button>
+                <Link href="/login" style={{textDecoration: 'none'}}>
+                  <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{marginRight: '1rem', fontSize: '1rem'}}>
+                  Login
+                  </button>
+                </Link>  
+                <Link href="/register" style={{textDecoration: 'none'}}>
+                  <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{fontSize: '1rem'}}>
+                  Sign up
+                  </button>
+                </Link>
               </div>
             </div>
           </header>

@@ -3,7 +3,7 @@ import Back from "@/app/components/Back";
 import CardDetailTab from "@/app/components/CardDetailTab";
 
 export default async function DisplayKudo({ params }: any) {
-    const res: any = await fetch(`http://localhost:8080/api/kudo/oneKudo/${params.id}`, { cache: 'no-store' });
+    const res: any = await fetch(`${process.env.NEXT_PUBLIC_API}/kudo/oneKudo/${params.id}`, { cache: 'no-store' });
     if (!res.ok) {
         throw new Error('Failed to fetch data');
     }
