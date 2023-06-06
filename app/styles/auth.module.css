@@ -1,0 +1,48 @@
+.layout {
+    margin: 0 auto;
+    min-height: 70vh;
+    max-width: 85vw;
+    padding: 0.5rem;
+}
+
+.formRoot {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.warning {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+@media only screen and (max-width: 1200px) {
+    .formRoot {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .formRoot {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .formRoot {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .loginFormRoot {
+        width: 90%;
+    }
+}
