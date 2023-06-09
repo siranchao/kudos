@@ -9,12 +9,12 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { loginUser } from '../controller/auth';
 import Loader from '../components/Loader';
+import { useSession, signIn } from 'next-auth/react';
 
 export const metadata: Metadata = {
     title: 'Kudos | Login',
     description: 'Kudos Login Page',
 };
-
 
 export default function Login() {
     const router = useRouter();
@@ -24,6 +24,11 @@ export default function Login() {
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState('');
     
+    // const { data: session } = useSession();
+    // if(session) {
+    //     router.push('/');
+    // }
+
 
     const submitForm = async (event: any) => {
         event.preventDefault();
@@ -85,8 +90,10 @@ export default function Login() {
                         Login
                     </Button>
                     }
-
                 </form>
+
+                <hr/>
+                <button onClick={() => signIn('google')}>Login with Google</button>
             </div>
         </div>
     )

@@ -19,6 +19,7 @@ import useSWR from 'swr'
 import { useAtom } from 'jotai'
 import { kudoAtom } from '@/store';
 import Loader from './Loader';
+import { useSession } from 'next-auth/react';
 
 
 async function fetcher(input: RequestInfo, init: RequestInit, ...args: any[]) {
@@ -33,7 +34,9 @@ const randomColor = () => {
 
 
 export default function Process() {
-    const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/users', fetcher)
+    const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/users', fetcher);
+
+    const { data: session } = useSession();
 
     //Kudo State for Context
     const steps: string[] = ['Select Receiver', 'Choose a Gif', 'Send Your Message'];
@@ -177,10 +180,10 @@ export default function Process() {
                                 <CardHeader
                                     avatar={
                                         <Avatar sx={{ bgcolor: randomColor() }} aria-label="recipe">
-                                            {kudo.sender ? kudo.sender[0] : ""}
+                                            { session?.user?.name ? session?.user?.name[0] : ""}
                                         </Avatar>
                                     }
-                                    title={kudo.sender}
+                                    title={session?.user?.name}
                                     subheader={String(date)}
                                 />
                                 <CardContent>

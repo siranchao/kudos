@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import styles from '../styles/myKudos.module.css'
 import InfoCard from '../components/InfoCard';
+import { getServerSession} from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
  
 export const metadata: Metadata = {
@@ -8,9 +11,13 @@ export const metadata: Metadata = {
   description: 'View My Kudos Page',
 };
 
-export default function MyKudos() {
-
+export default async function MyKudos() {
     const data = []
+
+    const session = await getServerSession(authOptions);
+    if(!session) {
+        redirect('/login');
+    }
 
     return (
         <div className={styles.myKudosPage}>
