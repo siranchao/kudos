@@ -30,7 +30,7 @@ export default async function Index() {
               <div>
                 <h2 className="ontario-callout__title ontario-h5">Welcome to Kudos!</h2>
                 <p className={styles.paragraph}><strong>xxxx</strong> Kudos created in the past 30 days, <strong>xxxxx</strong> Kudos created in total. </p>
-                <p className={styles.paragraph}>No need to sign up, just <Link href='/login'>click Login</Link> and you are ready to play!</p>
+                <p className={styles.paragraph}>Just take a few seconds to play, <Link href='/login'>click Login</Link> and you are ready to play!</p>
               </div>
             }
 

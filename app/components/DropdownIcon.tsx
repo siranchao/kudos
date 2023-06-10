@@ -45,11 +45,6 @@ export default function DropdownIcon() {
         right: false,
     });
     
-    const signout = async() => {
-      await signOut();
-      router.push('/login');
-    }
-
     const toggleDrawer =
       (anchor: Anchor, open: boolean) =>
         (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -159,7 +154,7 @@ export default function DropdownIcon() {
                   </Link>
                 </> :
                 <>
-                    <ListItem onClick={signout}> 
+                    <ListItem onClick={() => signOut()}> 
                         <ListItemButton>
                         <ListItemIcon>
                             <LoginIcon />

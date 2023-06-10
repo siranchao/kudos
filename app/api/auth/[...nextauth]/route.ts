@@ -11,6 +11,11 @@ export const authOptions = {
         })        
     ],
     secret: process.env.JWT_SECRET,
+    callbacks: {
+        async redirect({url, baseUrl}: any) {
+            return '/';
+        }
+    }
 }
 
 const handler: any = nextAuth(authOptions);
