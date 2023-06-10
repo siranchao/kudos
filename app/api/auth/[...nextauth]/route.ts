@@ -14,6 +14,13 @@ export const authOptions = {
     callbacks: {
         async redirect({url, baseUrl}: any) {
             return '/';
+        },
+        async jwt({token, account}: any) {
+            return {...token, ...account};
+        },
+        async session({session, token}: any) {
+            session.token = token;
+            return session;
         }
     }
 }

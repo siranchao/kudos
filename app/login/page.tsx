@@ -9,7 +9,9 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { loginUser } from '../controller/auth';
 import Loader from '../components/Loader';
-import { useSession, signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
+import Divider from '@mui/material/Divider';
+import GoogleIcon from '@mui/icons-material/Google';
 
 export const metadata: Metadata = {
     title: 'Kudos | Login',
@@ -24,11 +26,6 @@ export default function Login() {
     const [success, setSuccess] = useState(false);
     const [message, setMessage] = useState('');
     
-    // const { data: session } = useSession();
-    // if(session) {
-    //     router.push('/');
-    // }
-
 
     const submitForm = async (event: any) => {
         event.preventDefault();
@@ -39,9 +36,9 @@ export default function Login() {
         }
 
         try {
-            const res: string = await loginUser(email, password);
+            const res: any = await loginUser(email, password);
             setSuccess(true);
-            setMessage(res);
+            setMessage(res.message);
             setTimeout(() => {
                 router.push('/homePage');
             }, 1000);
@@ -90,10 +87,15 @@ export default function Login() {
                         Login
                     </Button>
                     }
-                </form>
 
-                <hr/>
-                <button onClick={() => signIn('google')}>Login with Google</button>
+                    <br/>
+                    <Divider>OR</Divider>
+                    <br/>
+                    <Button variant="contained" color="success" onClick={() => signIn('google')}>
+                        <GoogleIcon style={{paddingRight: '6px'}}/>
+                        Login with Google
+                    </Button>
+                </form>
             </div>
         </div>
     )

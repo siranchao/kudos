@@ -46,7 +46,7 @@ export async function loginUser(email: string, password: string) {
 
         if(res.status === 200) {
             console.log('Successfully logged in user')
-            return data.message
+            return data
         } else {
             throw new Error(data.message)
         }
