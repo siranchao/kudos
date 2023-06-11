@@ -22,7 +22,8 @@ import ApiIcon from '@mui/icons-material/Api';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 type ItemStyle = {
@@ -35,15 +36,17 @@ const listItemStyle: ItemStyle = {
 }
 
 export default function DropdownIcon() {
+    const router = useRouter();
+    const { data: session } = useSession();
     const [state, setState] = React.useState({
         top: false,
         left: false,
         bottom: false,
         right: false,
-      });
+    });
     
-      const toggleDrawer =
-        (anchor: Anchor, open: boolean) =>
+    const toggleDrawer =
+      (anchor: Anchor, open: boolean) =>
         (event: React.KeyboardEvent | React.MouseEvent) => {
           if (
             event.type === 'keydown' &&
@@ -53,7 +56,7 @@ export default function DropdownIcon() {
             return;
           }
           setState({ ...state, [anchor]: open });
-        };
+    };
     
       const list = (anchor: Anchor) => (
         <Box
@@ -126,27 +129,42 @@ export default function DropdownIcon() {
           </List>
           <Divider />
           <List>
-              <Link href='/login' style={listItemStyle}>
-                <ListItem>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <LoginIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Log in" />
-                    </ListItemButton>
-                </ListItem>
-              </Link>
-            
-              <Link href='/register' style={listItemStyle}>
-                <ListItem>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <AppRegistrationIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sign up" />
-                    </ListItemButton>
-                </ListItem>
-              </Link>
+              {!session ? 
+                <>
+                  <Link href='/login' style={listItemStyle}>
+                    <ListItem>
+                        <ListItemButton>
+                        <ListItemIcon>
+                            <LoginIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Log in" />
+                        </ListItemButton>
+                    </ListItem>
+                  </Link>
+              
+                  <Link href='/register' style={listItemStyle}>
+                    <ListItem>
+                        <ListItemButton>
+                        <ListItemIcon>
+                            <AppRegistrationIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Sign up" />
+                        </ListItemButton>
+                    </ListItem>
+                  </Link>
+                </> :
+                <>
+                    <ListItem onClick={() => signOut()}> 
+                        <ListItemButton>
+                        <ListItemIcon>
+                            <LoginIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Logout" />
+                        </ListItemButton>
+                    </ListItem>
+                </>
+              }
+
 
               <ListItem>
                 <ListItemButton>

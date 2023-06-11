@@ -2,14 +2,18 @@ import Banner from './components/Banner'
 import Link from 'next/link'
 import styles from './styles/home.module.css'
 import { Metadata } from 'next';
- 
+import { getServerSession} from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]/route';
+
+
 export const metadata: Metadata = {
   title: 'Kudos | Home',
   description: 'Kudos Home Page',
 };
 
-export default function Index() {
-  const isAuthenticated: boolean = false
+export default async function Index() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
 
   return (
     <main>
@@ -17,17 +21,17 @@ export default function Index() {
 
       <div className={styles.indexpageContent}>
         <div className="ontario-callout" style={{maxWidth: '90vw'}}>
-            {isAuthenticated?
+            {session ?
               <div>
-                <h2 className="ontario-callout__title ontario-h5">Welcome to Kudos, xxxx</h2>
+                <h2 className="ontario-callout__title ontario-h5">Welcome to Kudos, {session?.user?.name}</h2>
                 <p className={styles.paragraph}><strong>xxxx</strong> Kudos created in the past 30 days, <strong>xxxx</strong> Kudos created in total. </p>
-                <p className={styles.paragraph}>You can <a className={styles.link} >click here</a> to Logout the app.</p>
+                <p className={styles.paragraph}>You can <Link href='/myKudos'>click here</Link> to view your Kudos.</p>
               </div>
               :
               <div>
                 <h2 className="ontario-callout__title ontario-h5">Welcome to Kudos!</h2>
                 <p className={styles.paragraph}><strong>xxxx</strong> Kudos created in the past 30 days, <strong>xxxxx</strong> Kudos created in total. </p>
-                <p className={styles.paragraph}>No need to sign up, just <a className={styles.link}>click Login</a> and you are ready to play!</p>
+                <p className={styles.paragraph}>Just take a few seconds to play, <Link href='/login'>click Login</Link> and you are ready to play!</p>
               </div>
             }
 

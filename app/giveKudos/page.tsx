@@ -9,6 +9,7 @@ import { newKudo } from '../controller/newKudo'
 import { useAtom } from 'jotai'
 import { kudoAtom } from '@/store';
 import { Metadata } from 'next';
+import { useSession } from 'next-auth/react';
  
 export const metadata: Metadata = {
   title: 'Kudos | Create New',
@@ -16,18 +17,24 @@ export const metadata: Metadata = {
 };
 
 export default function GiveKudos() {
-    const [loading, setLoading] = useState(false)
     const router = useRouter();
+    const { data: session } = useSession({
+        required: true,
+        onUnauthenticated() {
+            router.push('/login');
+        }
+    });
+    
+    const [loading, setLoading] = useState(false)
     const [kudo, setKudo] = useAtom(kudoAtom);
 
     const createKudos = async () => {
         setLoading(true)
-        await newKudo(kudo.sender, kudo.receiver, kudo.message, kudo.gif)
+        await newKudo(session?.user?.name || "", kudo.receiver, kudo.message, kudo.gif)
 
         setTimeout(() => {
             setLoading(false)
             setKudo({
-                sender: "Siran",
                 receiver: [],
                 message: [],
                 gif: null,

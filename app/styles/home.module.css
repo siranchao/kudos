@@ -16,11 +16,6 @@
     margin-bottom: 1rem;
 }
 
-.link{
-    cursor: pointer;
-    font-weight: 500;
-}
-
 .entryBtnGroup {
     display: flex;
     flex-wrap: wrap;

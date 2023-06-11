@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './ontario-design-system/styles/ds-theme.css'
 import './styles/globals.css'
 import { Poppins } from 'next/font/google'
+import Provider from './components/Provider';
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -17,18 +18,19 @@ export default function RootLayout({children,}: {
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className} id='layout'>
-        <Header/>
+      <Provider>
+        <body className={poppins.className} id='layout'>
+          <Header/>
 
-        <div id='content'>
-          {children}
-        </div>
+          <div id='content'>
+            {children}
+          </div>
 
-        <div id='footer'>
-          <Footer/>
-        </div>
-      </body>
-    
+          <div id='footer'>
+            <Footer/>
+          </div>
+        </body>
+      </Provider>
     </html>
   )
 }
