@@ -19,7 +19,7 @@ export default function SearchName({addReceiver, users}: any) {
                         id="select-user"
                         sx={{ maxWidth: 400, minWidth: 300, m: `.75rem auto` }}
                         onChange={(e: any, value: any) => setName(value)}
-                        options={users.map((item: any) => item.name)}
+                        options={users.map((item: any) => item.username)}
                         renderOption={(props, option) => {
                             return (
                               <li {...props} key={option}>

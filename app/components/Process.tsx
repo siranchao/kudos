@@ -21,20 +21,38 @@ import { kudoAtom } from '@/store';
 import Loader from './Loader';
 import { useSession } from 'next-auth/react';
 
-
-async function fetcher(input: RequestInfo, init: RequestInit, ...args: any[]) {
-    const res = await fetch(input, init);
-    return res.json();
-}
-
 const randomColor = () => {
     const colorList: string[] = ["#CD0000", "#118847", "#FFD440", "#1080A6", "#551A8B", "#009ADB"]
     return colorList[Math.floor(Math.random() * colorList.length)]
 }
 
+interface User {
+    _id: string;
+    username: string;
+    email: string;
+    __v: number;
+}
+
+const fetcher = async (url: string, accessToken: string) => {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
+    const data: any = await response.json();
+    const users: User[] = data.data;
+
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+
+    return users;
+};
+
+
 
 export default function Process() {
-    const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/users', fetcher);
+    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API}/user/allUsers`, (url: string) => fetcher(url, session?.user?.accessToken as string))
 
     const { data: session } = useSession();
 

@@ -32,7 +32,6 @@ export const authOptions = {
                 
                 if (data) {
                     console.log('Successfully logged in user')
-                    console.log(data.data)
                     return data.data
                 } else {
                     return null
@@ -56,7 +55,7 @@ export const authOptions = {
         },
         async session({session, token}: any) {
             session.user = token
-            console.log("session is: ", session);
+            //console.log("session is: ", session);
             return session;
         }
     }
