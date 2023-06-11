@@ -30,7 +30,7 @@ export default function GiveKudos() {
 
     const createKudos = async () => {
         setLoading(true)
-        await newKudo(session?.user?.name || "", kudo.receiver, kudo.message, kudo.gif)
+        await newKudo(session?.user?.name || "", kudo.receiver, kudo.message, kudo.gif, session?.user?.accessToken as string)
 
         setTimeout(() => {
             setLoading(false)
