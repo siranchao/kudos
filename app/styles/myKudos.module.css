@@ -4,3 +4,15 @@
     max-width: 85vw;
     padding: 0.5rem;
 }
+
+.tabPanel {
+    margin: 0 auto;
+    width: 60%;
+}
+
+.grid {
+    padding: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    background-color: aquamarine;
+}

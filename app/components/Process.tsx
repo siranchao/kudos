@@ -136,7 +136,7 @@ export default function Process() {
     return (
         <>
             <h3>Create New Kudo: Step {activeStep+1}</h3>
-            <hr />
+            <br />
             {isLoading ? <Loader /> :
                 <Box sx={{ width: '100%' }}>
                     <Stepper activeStep={activeStep} alternativeLabel sx={{ pb: 3 }}>

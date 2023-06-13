@@ -26,9 +26,7 @@ export default async function Home() {
 
     return (
         <div className={styles.kudosHomePage}>
-            <h3>Welcome to Kudos App</h3>
-            <hr />
-
+            <br />
             {data.data.length > 0 ? 
             <MainGrid kudos={sortedData}/>
             :
