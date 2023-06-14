@@ -5,7 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import SendIcon from '@mui/icons-material/Send';
 import Process from "../components/Process"
 import styles from '../styles/giveKudos.module.css'
-import { newKudo } from '../controller/newKudo'
+import { newKudo } from '../controller/kudo'
 import { useAtom } from 'jotai'
 import { kudoAtom } from '@/store';
 import { Metadata } from 'next';
