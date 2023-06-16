@@ -39,7 +39,6 @@ export const authOptions = {
             }
         })        
     ],
-    secret: process.env.JWT_SECRET,
     callbacks: {
         async jwt({token, user, account}: any) {
             if (!user?.accessToken && account) {
@@ -58,7 +57,8 @@ export const authOptions = {
             //console.log("session is: ", session);
             return session;
         }
-    }
+    },
+    secret: process.env.JWT_SECRET
 }
 
 const handler: any = nextAuth(authOptions);
