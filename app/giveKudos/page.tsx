@@ -5,7 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import SendIcon from '@mui/icons-material/Send';
 import Process from "../components/Process"
 import styles from '../styles/giveKudos.module.css'
-import { newKudo } from '../controller/newKudo'
+import { newKudo } from '../controller/kudo'
 import { useAtom } from 'jotai'
 import { kudoAtom } from '@/store';
 import { Metadata } from 'next';
@@ -30,7 +30,7 @@ export default function GiveKudos() {
 
     const createKudos = async () => {
         setLoading(true)
-        await newKudo(session?.user?.name || "", kudo.receiver, kudo.message, kudo.gif)
+        await newKudo(session?.user?.name || "", kudo.receiver, kudo.message, kudo.gif, session?.user?.accessToken as string)
 
         setTimeout(() => {
             setLoading(false)

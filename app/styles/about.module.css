@@ -1,0 +1,44 @@
+.about{
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+}
+
+.info{
+    flex: 0.5;
+}
+
+.logo{
+    flex: 0.5;
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    display: flex;
+    margin: auto;
+    align-items: center;    
+}
+
+@media only screen and (max-width: 992px) {
+    .image {
+        width: 250px;
+        height: 250px;   
+    }
+}
+
+@media only screen and (max-width: 768px) {
+        .about{
+            flex-direction: column;
+        }
+        .logo{
+            padding-bottom: 3rem;
+        }
+        .info{
+            font-size: 14px;
+        }
+        .image {
+            width: 200px;
+            height: 200px;   
+        }
+}

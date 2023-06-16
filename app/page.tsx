@@ -11,9 +11,17 @@ export const metadata: Metadata = {
   description: 'Kudos Home Page',
 };
 
+async function getData() {
+  const res: any = await fetch(`${process.env.NEXT_PUBLIC_API}/kudo/kudosKpi`)
+  if (!res.ok){
+    throw new Error('Fail fetching data from server')
+  }
+  return res.json()
+}
+
 export default async function Index() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+  const kpi: any = await getData();
 
   return (
     <main>
@@ -24,13 +32,13 @@ export default async function Index() {
             {session ?
               <div>
                 <h2 className="ontario-callout__title ontario-h5">Welcome to Kudos, {session?.user?.name}</h2>
-                <p className={styles.paragraph}><strong>xxxx</strong> Kudos created in the past 30 days, <strong>xxxx</strong> Kudos created in total. </p>
+                <p className={styles.paragraph}><strong>{kpi.recent}</strong> Kudos created in the past 30 days, <strong>{kpi.total}</strong> Kudos created in total. </p>
                 <p className={styles.paragraph}>You can <Link href='/myKudos'>click here</Link> to view your Kudos.</p>
               </div>
               :
               <div>
                 <h2 className="ontario-callout__title ontario-h5">Welcome to Kudos!</h2>
-                <p className={styles.paragraph}><strong>xxxx</strong> Kudos created in the past 30 days, <strong>xxxxx</strong> Kudos created in total. </p>
+                <p className={styles.paragraph}><strong>{kpi.recent}</strong> Kudos created in the past 30 days, <strong>{kpi.total}</strong> Kudos created in total. </p>
                 <p className={styles.paragraph}>Just take a few seconds to play, <Link href='/login'>click Login</Link> and you are ready to play!</p>
               </div>
             }

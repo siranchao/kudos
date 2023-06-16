@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,7 +13,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Gif } from "@giphy/react-components"
 import styles from '../styles/homePage.module.css';
-
+import { useSession } from 'next-auth/react';
+import { likeKudo, dislikeKudo, collectKudo, disCollectKudo } from '../controller/kudo';
 
 const randomColor = () => {
     const colorList = ["#CD0000", "#118847", "#FFD440", "#1080A6", "#551A8B", "#009ADB"]
@@ -20,11 +22,34 @@ const randomColor = () => {
 }
 
 export default function KudoCardDetail( { kudo }: any) {
-    const [likedBtn, setLikedBtn] = useState(false);
-    const [thumbUpBtn, setThumbUpBtn] = useState(false);
-    const [thumbUpNum, setThumbUpNum] = useState(kudo.likes)
 
-    function shareKudo() {
+    const {data: session} = useSession();
+    const color = useRef(randomColor());
+
+    const [collectBtn, setCollectBtn] = useState<boolean>(kudo.collects?.includes(session?.user?.id));
+    const [likeBtn, setLikeBtn] = useState<boolean>(kudo.likes?.includes(session?.user?.id));
+    const [likeNum, setLikeNum] = useState<number>(kudo.likes?.length);
+
+    const handleCollectClicked = async () => {
+        if (collectBtn === false) {
+            await collectKudo(kudo._id, session?.user?.accessToken as string);
+        } else {
+            await disCollectKudo(kudo._id, session?.user?.accessToken as string);
+        }
+        setCollectBtn(!collectBtn)
+    }
+
+    const handleLikeClicked = async () => {
+        let res: any = null;
+        if (likeBtn === false) {
+            res = await likeKudo(kudo._id, session?.user?.accessToken as string);
+        } else {
+            res = await dislikeKudo(kudo._id, session?.user?.accessToken as string);
+        }
+        setLikeBtn(!likeBtn)
+    }
+
+    const handleShareClicked = () => {
         navigator.clipboard.
             writeText(window.location.href)
             .then(() => {
@@ -35,12 +60,16 @@ export default function KudoCardDetail( { kudo }: any) {
             })
     }
 
+    const warning = () => {
+        alert("Please login or sign up to Kudos for more actions")
+    }
+
     if (typeof window !== "undefined") {
         return (
             <Card sx={{ maxWidth: 345, boxShadow: 10, margin: '1rem auto' }} className="d-flex flex-column" >
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: randomColor() }} aria-label="recipe">
+                        <Avatar sx={{ bgcolor: color.current}} aria-label="recipe">
                             {kudo.sender[0]}
                         </Avatar>
                     }
@@ -75,31 +104,34 @@ export default function KudoCardDetail( { kudo }: any) {
                 </CardContent>
                 <CardActions disableSpacing className='mt-auto' sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <div className={styles.rowSection}>
-    
                         <div className={styles.leftSection}>
-                            <IconButton aria-label="like"
-                                color={likedBtn === true ? "primary" : "default"}
-                                //onClick={handleLikedClick}
-                            >
-                                <FavoriteIcon />
-                            </IconButton>
-    
-    
-                            <IconButton aria-label="share"
-                                onClick={shareKudo}
-                            >
-                                <ShareIcon />
-                            </IconButton>
+                            <Tooltip title="Collect">
+                                <IconButton aria-label="collect"
+                                    color={collectBtn ? "primary" : "default"}
+                                    onClick={() => session ? handleCollectClicked() : warning() }
+                                >
+                                    <FavoriteIcon />
+                                </IconButton>
+                            </Tooltip>
+
+                            <Tooltip title="Share">
+                                <IconButton aria-label="share"
+                                    onClick={ handleShareClicked }
+                                >
+                                    <ShareIcon />
+                                </IconButton>
+                            </Tooltip>
                         </div>
-    
-                        <IconButton aria-label="thumbUp"
-                            color={thumbUpBtn === true ? "primary" : "default"}
-                            //onClick={handleThumbUp}
-                        >
-                            <ThumbUpIcon />
-                            {thumbUpNum > 0 && <span style={{ fontSize: '1.2rem', paddingLeft: '.5rem' }}>{thumbUpNum}</span>}
-                        </IconButton>
-    
+
+                        <Tooltip title="Like">
+                            <IconButton aria-label="thumbUp"
+                                color={likeBtn ? "primary" : "default"}
+                                onClick={ () => session ? handleLikeClicked() : warning()} 
+                            >
+                                <ThumbUpIcon />
+                                {likeNum > 0 && <span style={{ fontSize: '1rem', paddingLeft: '.5rem' }}>{likeNum}</span>}
+                            </IconButton>
+                        </Tooltip>
                     </div>
                 </CardActions>
             </Card>
