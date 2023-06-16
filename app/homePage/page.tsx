@@ -1,15 +1,11 @@
 'use client';
 import MainGrid from '../components/MainGrid';
 import ScrollButton from '../components/ScrollButton';
-import { Metadata } from 'next';
 import styles from '../styles/homePage.module.css';
 import InfoCard from '../components/InfoCard';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
  
-export const metadata: Metadata = {
-  title: 'Kudos | Showcase',
-  description: 'View All Kudos Page',
-};
 
 export default async function Home() {
     const [kudos, setKudos] = useState([]);
@@ -29,7 +25,15 @@ export default async function Home() {
 
 
     return (
-        <div className={styles.kudosHomePage}>
+      <>
+            <Head>
+                <title>Kudos | Showcase</title>
+                <meta property="og:title" key="title" content="Kudos | Showcase" />
+                <meta name="description" key='description' content="View All Kudos Page" />
+                <meta name="viewport" key='viewport' content="width=device-width, initial-scale=1" />
+            </Head>
+
+            <div className={styles.kudosHomePage}>
             <br />
             {kudos.length > 0 ? 
             <MainGrid kudos={kudos}/>
@@ -38,5 +42,6 @@ export default async function Home() {
     
             <ScrollButton />
         </div>
+      </>
     )
 }

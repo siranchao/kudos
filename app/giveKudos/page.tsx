@@ -8,13 +8,9 @@ import styles from '../styles/giveKudos.module.css'
 import { newKudo } from '../controller/kudo'
 import { useAtom } from 'jotai'
 import { kudoAtom } from '@/store';
-import { Metadata } from 'next';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
  
-export const metadata: Metadata = {
-  title: 'Kudos | Create New',
-  description: 'Kudos Create New Kudo Page',
-};
 
 export default function GiveKudos() {
     const router = useRouter();
@@ -46,6 +42,12 @@ export default function GiveKudos() {
 
     return (
         <>
+            <Head>
+                <title>Kudos | Create New</title>
+                <meta property="og:title" key="title" content="Kudos | Create New" />
+                <meta name="description" key='description' content="Kudos Create New Kudo Page" />
+                <meta name="viewport" key='viewport' content="width=device-width, initial-scale=1" />
+            </Head>
             <div className={styles.giveKudos}>
                 <Process/>
 
