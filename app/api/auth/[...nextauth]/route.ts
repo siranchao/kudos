@@ -57,8 +57,7 @@ export const authOptions = {
             //console.log("session is: ", session);
             return session;
         }
-    },
-    secret: process.env.JWT_SECRET
+    }
 }
 
 const handler: any = nextAuth(authOptions);
