@@ -8,9 +8,10 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import infoImg from '../../public/images/no-data.jpg'
 
+
 export default function InfoCard({ info }: any) {
   return (
-    <Card sx={{ maxWidth: 400, margin: 'auto' }}>
+    <Card sx={{ maxWidth: 400, margin: '2rem auto' }}>
       <CardMedia
         sx={{ height: 250, width: 400 }}
         component="img"

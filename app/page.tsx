@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 
 export default async function Index() {
   const session = await getServerSession(authOptions);
-  console.log(session);
 
   return (
     <main>

@@ -7,12 +7,44 @@
 
 .tabPanel {
     margin: 0 auto;
-    width: 60%;
+    max-width: 100%;
 }
 
 .grid {
     padding: 1rem;
     margin-top: 1rem;
-    width: 100%;
-    background-color: aquamarine;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+@media only screen and (max-width: 1400px) {
+    .grid {
+        gap: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+    }
+    .infoCard {
+        width: 300;
+        margin: 0 auto;
+    }
 }

@@ -3,9 +3,9 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Paper from '@mui/material/Paper';
 import styles from '../styles/myKudos.module.css'
 import InfoCard from './InfoCard';
+import KudoCard from "./KudoCard"
 
 
 interface TabPanelProps {
@@ -27,7 +27,7 @@ function TabPanel(props: TabPanelProps) {
         className={styles.tabPanel}
       >
         {value === index && (
-            <div className={styles.grid}>{children}</div>
+            <div>{children}</div>
         )}
       </div>
     );
@@ -45,7 +45,8 @@ export default function MyKudosTab({ kudos }: any) {
     const [value, setValue] = useState(0);
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
-      };
+    };
+
   
 
     return (
@@ -59,27 +60,43 @@ export default function MyKudosTab({ kudos }: any) {
                 </Tabs>
             </Box>
         <TabPanel value={value} index={0}>
-            {kudos.sent.length === 0 ? <InfoCard info={"No Kudos in your collection"}/> 
-            : 
-            <div>Kudos goes here</div>} 
+            {kudos.sent.length === 0 ? <InfoCard info={"You have not sent any kudos yet"} className={styles.infoCard}/> 
+            :
+            <div className={styles.grid}>
+                {kudos?.sent.map((kudo: any, index: number) => (
+                    <KudoCard key={index} kudo={kudo} />               
+                ))}
+            </div>}
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-            {kudos.received.length === 0 ? <InfoCard info={"No Kudos in your collection"}/> 
+            {kudos.received.length === 0 ? <InfoCard info={"You did not receive any kudos yet"} className={styles.infoCard}/> 
             : 
-            <div>Kudos goes here</div>} 
+            <div className={styles.grid}>
+                {kudos?.received.map((kudo: any, index: number) => (
+                    <KudoCard key={index} kudo={kudo} />               
+                ))}
+            </div>}
         </TabPanel>
 
         <TabPanel value={value} index={2}>
-            {kudos.liked.length === 0 ? <InfoCard info={"No Kudos in your collection"}/> 
+            {kudos.liked.length === 0 ? <InfoCard info={"You have not liked any kudos yet"} className={styles.infoCard}/> 
             : 
-            <div>Kudos goes here</div>} 
+            <div className={styles.grid}>
+                {kudos?.liked.map((kudo: any, index: number) => (
+                    <KudoCard key={index} kudo={kudo} />               
+                ))}
+            </div>}
         </TabPanel>
 
         <TabPanel value={value} index={3}>
-            {kudos.collected.length === 0 ? <InfoCard info={"No Kudos in your collection"}/> 
+            {kudos.collected.length === 0 ? <InfoCard info={"You have not collected any kudos yet"} className={styles.infoCard}/> 
             : 
-            <div>Kudos goes here</div>} 
+            <div className={styles.grid}>
+            {kudos?.collected.map((kudo: any, index: number) => (
+                <KudoCard key={index} kudo={kudo} />               
+            ))}
+        </div>}
         </TabPanel>
 
       </Box>

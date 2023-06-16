@@ -12,23 +12,47 @@ export const metadata: Metadata = {
   description: 'View My Kudos Page',
 };
 
-export default async function MyKudos() {
-    const kudos: any = {
-        sent: [1],
-        received: [1],
-        liked: [1],
-        collected: [1],
-    };
+async function getData(accessToken: string) {
+    const res: any = await fetch(`${process.env.NEXT_PUBLIC_API}/kudo/myKudos`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': accessToken
+      },
+    })
+    if (!res.ok){
+        throw new Error('Fail fetching data from server')
+    }
+    return res.json()
+}
 
+
+export default async function MyKudos() {
     const session = await getServerSession(authOptions);
     if(!session) {
         redirect('/login');
     }
 
+    const data = await getData(session?.user?.accessToken)
+    const sortedData = {
+        sent: data.data.sent?.sort((a: any, b: any) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }),
+        received: data.data.received?.sort((a: any, b: any) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }),
+        liked: data.data.liked?.sort((a: any, b: any) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }),
+        collected: data.data.collected?.sort((a: any, b: any) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        })
+    }
+
     return (
         <div className={styles.myKudosPage}>
             <h3>My Kudos</h3>
-            <MyKudosTab kudos={kudos}/>
+            <MyKudosTab kudos={sortedData}/>
             <ScrollButton />
         </div>
     )
