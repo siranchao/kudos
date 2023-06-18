@@ -31,7 +31,7 @@ export async function registerUser(email: string, password: string, username: st
 }
 
 export function signJwtToken(payload: JwtPayload) {
-    const token = jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, {expiresIn: '30d'});
+    const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET as jwt.Secret, {expiresIn: '30d'});
     return token;
 }
 
