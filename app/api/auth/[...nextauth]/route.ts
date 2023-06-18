@@ -9,6 +9,7 @@ export const authOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            
         }),
         CredentialsProvider({
             name: "Credentials",
@@ -59,6 +60,7 @@ export const authOptions = {
         }
     },
     // secret: process.env.NEXTAUTH_SECRET
+    debug: true
 }
 
 const handler: any = nextAuth(authOptions);
