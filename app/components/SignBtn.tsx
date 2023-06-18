@@ -13,18 +13,18 @@ export default function SignBtn() {
             {session ? 
                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <p style={{lineHeight: '100%', marginBottom: '0', marginRight: '1rem'}}>Welcome, {session?.user?.name}</p>
-                    <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{marginRight: '1rem', fontSize: '1rem'}} onClick={() => signOut()}>
+                    <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{marginRight: '1rem', fontSize: '1rem', whiteSpace: 'nowrap'}} onClick={() => signOut()}>
                     Logout
                     </button>
                 </div>
 
                    :
                 <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{marginRight: '1rem', fontSize: '1rem'}} onClick={() => router.push('/login')}>
+                    <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{marginRight: '1rem', fontSize: '1rem', whiteSpace: 'nowrap'}} onClick={() => router.push('/login')}>
                     Login
                     </button>
 
-                    <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{marginRight: '1rem', fontSize: '1rem'}} onClick={() => router.push('/register')}>
+                    <button className="ontario-header__language-toggler ontario-header-button ontario-header-button--without-outline" style={{marginRight: '1rem', fontSize: '1rem', whiteSpace: 'nowrap'}} onClick={() => router.push('/register')}>
                     Sign up
                     </button>
                 </div>

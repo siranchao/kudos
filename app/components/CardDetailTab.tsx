@@ -66,7 +66,7 @@ export default function CardDetailTab({ kudo }: any) {
         navigator.clipboard.
             writeText(window.location.href)
             .then(() => {
-                alert(window.location.href + "\n\nKudo Link Copied!")
+              alert("Kudo Link Copied to Clipboard !")
             })
             .catch(() => {
                 alert("Unable to copy URL, please try again")
@@ -77,7 +77,7 @@ export default function CardDetailTab({ kudo }: any) {
         navigator.clipboard.
         writeText(embedValue)
         .then(() => {
-            alert("Link Copied to Clipboard!")
+            alert("Gif Link Copied to Clipboard !")
         })
         .catch(() => {
             alert("Unable to copy URL, please try again")

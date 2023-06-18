@@ -37,7 +37,7 @@ export const authOptions = {
                     return null
                 }
             }
-        })        
+        }),   
     ],
     callbacks: {
         async jwt({token, user, account}: any) {
@@ -57,7 +57,8 @@ export const authOptions = {
             //console.log("session is: ", session);
             return session;
         }
-    }
+    },
+    secret: process.env.NEXTAUTH_SECRET
 }
 
 const handler: any = nextAuth(authOptions);

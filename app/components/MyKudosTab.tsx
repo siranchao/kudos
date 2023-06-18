@@ -52,10 +52,14 @@ export default function MyKudosTab({ kudos }: any) {
     return (
         <Box sx={{ width: '100%', mb: 2 }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
-                    <Tab label="Kudos Sent" {...a11yProps(0)} />
-                    <Tab label="Kudos Received" {...a11yProps(1)} />
-                    <Tab label="Kudos Liked" {...a11yProps(2)} />
+                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" 
+                variant="scrollable"
+                centered 
+                scrollButtons
+                allowScrollButtonsMobile>
+                    <Tab label="Sent" {...a11yProps(0)} />  
+                    <Tab label="Received" {...a11yProps(1)} />
+                    <Tab label="Liked" {...a11yProps(2)} />
                     <Tab label="Collection" {...a11yProps(3)} />
                 </Tabs>
             </Box>

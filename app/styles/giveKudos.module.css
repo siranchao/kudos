@@ -4,3 +4,41 @@
     max-width: 85vw;
     padding: 0.5rem;
 }
+
+.searchKudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.searchLabel {
+   display: block;
+}
+
+.searchField {
+    text-align: right;
+}
+
+.gifGrid {
+    overflow: scroll;
+    height: 600;
+}
+
+/* 
+
+@media only screen and (max-width: 1400px) {
+
+}
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+@media only screen and (max-width: 992px) {
+
+}
+
+@media only screen and (max-width: 576px) {
+
+} */

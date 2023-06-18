@@ -4,6 +4,7 @@ import { Grid } from "@giphy/react-components"
 import { GiphyFetch } from "@giphy/js-fetch-api"
 import ResizeObserver from "react-resize-observer";
 import TextField from '@mui/material/TextField';
+import styles from '@/app/styles/giveKudos.module.css'
 
 ////Giphy API key
 const giphyFetch = new GiphyFetch(`${process.env.NEXT_PUBLIC_GIF_APIKEY}`)
@@ -28,12 +29,10 @@ export default function GifGrid({ onGifClick }: any) {
 
     return (
         <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h5 style={{ display: 'inline-block' }}>Select Your Gif</h5>
+            <div className={styles.searchKudo}>
+                <h5 className={styles.searchLabel}>Select Your Gif</h5>
 
-                <div style={{
-                    textAlign: `right`
-                }}>
+                <div className={styles.searchField}>
                     <TextField
                         id="giphy-search"
                         label="Keyword"
@@ -47,7 +46,7 @@ export default function GifGrid({ onGifClick }: any) {
                 </div>
             </div>
 
-            <div style={{ overflow: "scroll", height: "600px" }}>
+            <div className={styles.gifGrid}>
                 <Grid
                     key={keyword}
                     onGifClick={onGifClick}

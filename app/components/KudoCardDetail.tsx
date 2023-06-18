@@ -53,7 +53,7 @@ export default function KudoCardDetail( { kudo }: any) {
         navigator.clipboard.
             writeText(window.location.href)
             .then(() => {
-                alert(window.location.href + "\n\nKudo Link Copied!")
+                alert("Kudo Link Copied to Clipboard !")
             })
             .catch(() => {
                 alert("Unable to copy URL, please try again")
