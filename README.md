@@ -15,10 +15,13 @@
 
 # rpdu.rd.kudos
 
+Kudos is a simple mobile first (web) app that allows users sharing interesting kudos to teammates and colleagues without composing format emails! 
 The original app url can be found at:
 [https://ashy-bay-0ac315a10.2.azurestaticapps.net/](https://ashy-bay-0ac315a10.2.azurestaticapps.net/)
 
-A simple mobile first (web) app to give kudos to any and everyone! Built on a MERN stack with Next.js.
+This site is a clone of original rpdu.rd.kudos, using MERN stack. Including: React, Next.js, TypeScript, Mongo, Node, and express.js
+App Url: [https://kudos-clone.vercel.app/](https://kudos-clone.vercel.app/)
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
