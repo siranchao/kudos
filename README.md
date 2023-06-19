@@ -13,19 +13,19 @@
 [![Node.js](https://img.shields.io/badge/Node.js-%23339933.svg?&style=for-the-badge&logo=Node.js&logoColor=white)]()
 [![Next.js](https://img.shields.io/badge/next.js-%23663399.svg?&style=for-the-badge&logo=Next.js&logoColor=white)]()
 
-# rpdu.rd.kudos
+# rpdu.rd.kudos: Build a Recognition Culture with Kudos
 
-Kudos is a simple mobile first (web) app that allows users sharing interesting kudos to teammates and colleagues without composing format emails! 
+Kudos is a fully mobile responsive, full-stack web app that allows users sharing interesting kudos to teammates and colleagues in workplace
+- No need to compose formal and tedious emails. Users can select eye-catching Gif images and send kudos in a interesting and easy way.
+- Use next-auth and multiple authentication providers. Support google account login and custom credential
+- Registered users are able to create customize kudos and share with others. Also user can like, share and collect kudos/gifs when browsing the kudos gallery
 
-The original app url:[https://ashy-bay-0ac315a10.2.azurestaticapps.net/](https://ashy-bay-0ac315a10.2.azurestaticapps.net/)
 
 This site is a clone of the original rpdu.rd.kudos with new layouts and enhenced features.
-
-Coding stack: MERN
-
-Including: React, Next.js, TypeScript, Mongo, Node, and express.js
-
-App Url: [https://kudos-clone.vercel.app/](https://kudos-clone.vercel.app/)
+- The original app url:[https://ashy-bay-0ac315a10.2.azurestaticapps.net/](https://ashy-bay-0ac315a10.2.azurestaticapps.net/)
+- Coding stack: MERN
+- Including: React, Next.js, TypeScript, Mongo, Node, and express.js
+- App Url: [https://kudos-clone.vercel.app/](https://kudos-clone.vercel.app/)
 
 
 ## Getting Started with Next.js
