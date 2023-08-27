@@ -1,7 +1,8 @@
 .about{
     display: flex;
     flex-direction: row;
-    padding: 2rem;
+    padding: 4rem;
+    font-size: 13px;
 }
 
 .info{
@@ -33,9 +34,6 @@
         }
         .logo{
             padding-bottom: 3rem;
-        }
-        .info{
-            font-size: 14px;
         }
         .image {
             width: 200px;

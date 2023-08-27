@@ -21,7 +21,7 @@ export default function About() {
 					</div>
 
 					<div className={styles.info}>
-						<h3> About Kudos App</h3>
+						<h4> About Kudos App</h4>
 						<p>This application is designed and developed by Rapid Prototype Design Unit (RPDU), Enterprise Technology Delivery, GovTechON using MERN stack</p>
 						<p> Version: 1.0.0.0 </p>
 						<p> Developers: </p>
@@ -31,7 +31,7 @@ export default function About() {
 							<li>Xin Lyu - <a href="mailto:xin.lyu@ontario.ca">xin.lyu@ontario.ca</a></li>
 						</ul>
 						<hr />
-						<h3>Feedback</h3>
+						<h4>Feedback</h4>
 						<p><a href="https://web.yammer.com/main/org/ontario.ca/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI5MDY1ODczNDA4MCJ9/new" target="_blank" rel="noreferrer">Join our community</a> on yammer to learn more about low-code and Power-Apps</p>
 						<br />
 						<p>If you have any feedbacks please send to <a href="mailto:rpdu@ontario.ca">rpdu@ontario.ca</a>, your opinion is valuable to us!</p>

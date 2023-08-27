@@ -1,12 +1,13 @@
 .layout {
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 1rem;
     min-height: 70vh;
-    max-width: 85vw;
     padding: 0.5rem;
+    width: 30rem;
 }
 
 .formRoot {
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -23,26 +24,10 @@
 .success {
     color: green;
 }
-@media only screen and (max-width: 1200px) {
-    .formRoot {
-        width: 65%;
-    }
-}
 
-@media only screen and (max-width: 992px) {
-    .formRoot {
+
+@media (max-width: 640px) {
+    .layout{
         width: 70%;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .formRoot {
-        width: 80%;
-    }
-}
-
-@media only screen and (max-width: 576px) {
-    .loginFormRoot {
-        width: 90%;
     }
 }
